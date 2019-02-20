@@ -45,4 +45,23 @@ def rev_string_in_place(str):
     print(sample)
     return list_string
 
-print(rev_string_in_place("Hello"))
+# print(rev_string_in_place("Hello"))
+
+
+# Reverse string using a stack
+
+class Stack(object):
+
+    def __init__(self):
+        self.items = []
+
+    def push(self, item):
+        self.items.append(item)
+
+    def pop(self):
+        if not self.items:
+            print("Can't remove from empty stack")
+            return False
+        self.items.pop()
+    
+    def reverse_order(self):
