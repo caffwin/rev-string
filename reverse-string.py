@@ -48,6 +48,12 @@ def rev_string_in_place(str):
 # print(rev_string_in_place("Hello"))
 
 
+class Test(object):
+    def __repr__(self):
+       return "This is a repr"
+    def __str__(self):
+        return "This is the str"
+
 # Reverse string using a stack
 
 class Stack(object):
@@ -64,4 +70,27 @@ class Stack(object):
             return False
         self.items.pop()
     
-    def reverse_order(self):
+    def reverse_order(self, string):
+        
+        # Create an empty stack, and keep track of the length of the string
+        length_str = len(string)
+        string_stack = Stack() # this is a list
+        
+        for i in range(0, length_str):
+            string_stack.push(string[i])
+            
+        print("String stack: ", string_stack)
+        
+        # print(string_stack)
+        reversed_string = ""
+
+        # for i in range(0, length_str):
+        #     reversed_string += string_stack.pop(i)
+
+        print([str(item) for item in reversed_string])
+
+
+
+# H E L L O 
+# 1 2 3 4 5 Normal access sequence
+# 5 4 3 2 1 Access via Stack
