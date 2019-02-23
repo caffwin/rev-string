@@ -1,3 +1,5 @@
+from pprint import pprint
+
 # Reverse a string in place
 
 # Input: string
@@ -32,7 +34,7 @@
 
 def rev_string_in_place(str):
 
-    sample = 5/2  # Rounds down
+    sample_test = 5/2  # Rounds down
 
     list_string = list(str)
     length = len(str)
@@ -42,17 +44,37 @@ def rev_string_in_place(str):
         # list_string[2 - 1 - i]
         list_string[i], list_string[len(str) - 1 - i] = list_string[len(str) - 1 - i], list_string[i]
 
-    print(sample)
+    print(sample_test)
     return list_string
 
-# print(rev_string_in_place("Hello"))
+print(rev_string_in_place("Hello"))
 
 
-class Test(object):
-    def __repr__(self):
-       return "This is a repr"
-    def __str__(self):
-        return "This is the str"
+def rev_str_in_place_pointers(list_chars):
+
+    left_pointer = 0
+    right_pointer = len(list_chars) - 1
+
+    # As long as left pointer is less than right pointer..
+    # Swap the pointers - middle letter can be left alone if it's an odd # of chars
+
+    while left_pointer < right_pointer:
+        list_chars[left_pointer], list_chars[right_pointer] = list_chars[right_pointer], list_chars[left_pointer]
+        left_pointer += 1
+        right_pointer -= 1
+
+    return list_chars
+
+
+print(rev_str_in_place_pointers(['H', 'E', 'N', 'L', 'O']))
+
+# class Test(object):
+#     def __init__(self, a):
+#         self.a = a
+#     def __repr__(self):
+#         return "<Repr Test a:%s>" % (self.a)
+#     def __str__(self):
+#         return "From str method of Test: a is %s" % (self.a)
 
 # Reverse string using a stack
 
@@ -60,6 +82,9 @@ class Stack(object):
 
     def __init__(self):
         self.items = []
+
+    def __str__(self):
+        return "String of self.items: " + str(self.items)
 
     def push(self, item):
         self.items.append(item)
@@ -73,23 +98,22 @@ class Stack(object):
     def reverse_order(self, string):
         
         # Create an empty stack, and keep track of the length of the string
+        print("String is: ", string)
         length_str = len(string)
-        string_stack = Stack() # this is a list
+        string_stack = Stack() # this is a list, refer to elements using string_stack.items
         
-        for i in range(0, length_str):
+        for i in range(0, length_str, 1):
+            print("String at i is: ", string[i])
             string_stack.push(string[i])
-            
-        print("String stack: ", string_stack)
         
-        # print(string_stack)
+        # p = pprint(vars(string_stack))
+
         reversed_string = ""
 
-        # for i in range(0, length_str):
-        #     reversed_string += string_stack.pop(i)
+        for i in range(0, length_str, 1):
+            reversed_string += string_stack.items.pop()
 
-        print([str(item) for item in reversed_string])
-
-
+        return reversed_string
 
 # H E L L O 
 # 1 2 3 4 5 Normal access sequence
